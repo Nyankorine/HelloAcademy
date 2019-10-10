@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HelloAcademy.Utils;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,6 +7,75 @@ namespace HelloAcademy
 {
     public static class FunzioniRubrica
     {
+        public static void InserisciNumeroArbitrarioPersoneInRubrica()
+        {
+            //1) Richiedo il numero di persone da inserire
+            Console.Write("Quante persone vuoi inserire (da 1 a 9)? ");
+            int totalPersons = ConsoleUtils.LeggiNumeroInteroDaConsole(1, 9);
+
+            //Richiamo la funzione che genera la rubrica
+            // => TODO var rubrica = ComposizioneRubrica(totalPersons);
+
+            //Dimensionamento della rubrica
+            Person[] rubrica = new Person[totalPersons];
+
+            //4) Itero per il numero di persone richiesto
+            for (int index = 0; index < totalPersons; index++)
+            {
+                //Richiamo una funzione a cui passo la rubrica
+                //e l'indice corrente e questa mi aggiunge la persona
+                AggiungiPersonaARubricaInPosizione(rubrica, index);
+            }
+
+            //9) Itero la rubrica e stampo a video (con for) tutte le persone
+            StampaRubrica(rubrica);
+
+            //Richiedo di inserire un altro elemento in rubrica
+            //=> TODO 
+
+            //STampo nuovamente la rubrica
+
+            //Cerimonia finale
+            ConsoleUtils.ConfermaUscita();
+        }
+
+        
+
+       
+
+        private static void StampaRubrica(Person[] rubrica)
+        {
+            Console.WriteLine("*** Visualizzazione contenuto rubrica***");
+            for (var index = 0; index < rubrica.Length; index++)
+            {
+                Console.WriteLine($" => {rubrica[index].FirstName}, {rubrica[index].LastName}");
+                //Console.WriteLine(" => " + rubrica[index].FirstName + ", " + rubrica[index].LastName);
+            }
+        }
+
+        private static void AggiungiPersonaARubricaInPosizione(Person[] rubrica, int index)
+        {
+            //5) Richiedo il nome e cognome della persona
+            Console.Write("nome: ");
+            var nome = Console.ReadLine();
+            Console.Write("cognome: ");
+            var cognome = Console.ReadLine();
+
+            //6) Creo oggetto Person da inserire in rubrica
+            Person person = new Person
+            {
+                FirstName = nome,
+                LastName = cognome
+            };
+
+            //7) Aggiungo persona a rubrica
+            rubrica[index] = person;
+
+            //8) Se ho inserito tutte le persone termino il ciclo
+        }
+
+
+        //******************************************************************
         public static void InserisciPersoneEMostraRubrica()
         {
             //Dimensiono array per la rubrica
@@ -76,49 +146,11 @@ namespace HelloAcademy
             }
 
             Console.WriteLine("Iterazione rubrica (foreach):");
-            foreach (Person current in rubrica)
+            foreach (Person current in rubrica) 
             {
-                Console.WriteLine(current.FirstName + " " + current.LastName);
+                Console.WriteLine(current.FirstName + ", " + current.LastName);
             }
 
         }
-        public static void InserisciNumeroArbitrarioPersoneInRubrica()
-        {
-            //Richiedo il numero di persone da inserire
-            Console.Write("Quante persone vuoi aggiungere in rubrica? ");
-            string n = Console.ReadLine();
-            int nint = int.Parse(n);
-            //Validazione del valore immesso e conversione in numero
-            //Se il numero è minore o uguale a zero, o maggiore di 10 esco
-            if(nint <= 0 || nint > 10)
-            {
-                Console.Write("Press any key...");
-                Console.ReadLine();
-                return;
-            }
-                Person[] rubrica = new Person[nint];
-                //Itero per il numero di persone richiesto                             
-                for (int i = 0; i < rubrica.Length; i++)
-                {
-                    int x = i + 1;
-                //Richiedo il nome e cognome della persona
-                    Console.Write("Nome " + x + " : ");
-                    string nome = Console.ReadLine();
-                    Console.Write("Cognome " + x + " : ");
-                    string cognome = Console.ReadLine();
-                    Person person = new Person
-                    {
-                    FirstName = nome,
-                    LastName = cognome
-                    };
-                //Aggiungo persona a rubrica
-                rubrica[i] = person;
-                }
-            //Se ho inserito tutte le persone termino il ciclo
-            //Itero la rubrica e stampo a video (con for) 
-            for (int i = 0; i < rubrica.Length; i++)
-                Console.WriteLine(rubrica[i].FirstName + " " + rubrica[i].LastName);                    
-        }
-
     }
 }
