@@ -24,9 +24,10 @@ namespace HelloAcademy
                 Console.WriteLine("* 1 - Divisione");
                 Console.WriteLine("* 2 - Rubrica semplice");
                 Console.WriteLine("* 3 - Rubrica complessa");
+                Console.WriteLine("* 4 - File di testo");
                 Console.WriteLine("* 0 - Exit");
                 Console.Write("* Selezione: ");
-                selezione = ConsoleUtils.LeggiNumeroInteroDaConsole(0, 3);
+                selezione = ConsoleUtils.LeggiNumeroInteroDaConsole(0, 4);
                 //Selezione della funzione da avviare
                 switch (selezione)
                 {
@@ -38,6 +39,9 @@ namespace HelloAcademy
                         break;
                     case 3:
                         FunzioniRubrica.InserisciNumeroArbitrarioPersoneInRubrica();
+                        break;
+                    case 4:
+                        FunzioniFileSystem.CreaStrutturaPerConservazioniDati();
                         break;
                     case 0:
                         Console.WriteLine("Uscita....");
