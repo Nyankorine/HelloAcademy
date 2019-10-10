@@ -8,6 +8,7 @@ namespace HelloAcademy
         static void Main(string[] args)
         {
             bool exit = true;
+            int selezione;
             do {
                 // => "HelloAcademy publish test"
                 //args[0] = "publish"
@@ -25,7 +26,7 @@ namespace HelloAcademy
                 Console.WriteLine("* 3 - Rubrica complessa");
                 Console.WriteLine("* 0 - Exit");
                 Console.Write("* Selezione: ");
-                var selezione = ConsoleUtils.LeggiNumeroInteroDaConsole(0, 3);
+                selezione = ConsoleUtils.LeggiNumeroInteroDaConsole(0, 3);
                 //Selezione della funzione da avviare
                 switch (selezione)
                 {
@@ -40,7 +41,6 @@ namespace HelloAcademy
                         break;
                     case 0:
                         Console.WriteLine("Uscita....");
-                        exit = false;
                         break;
                     default:
                         Console.WriteLine("Selezione non valida");
@@ -60,7 +60,7 @@ namespace HelloAcademy
 
                 //FunzioniRubrica.InserisciNumeroArbitrarioPersoneInRubrica();
             }
-            while (exit);
+            while (selezione != 0);
         }
     }    
 }
